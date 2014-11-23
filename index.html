@@ -1,0 +1,573 @@
+<html>
+<head>
+<title>"x/o"</title>
+<style>
+body
+{
+background-color:black;
+overflow:auto;
+}
+h1
+{
+font-size: 0px;
+height:0px;
+font-family: Georgia, 'Times New Roman', Times, serif;
+text-align:center;
+color:#008080;
+}
+#win
+{
+position:absolute;
+font-size:0px;
+}
+.empnav
+{
+width:20%;
+height:1000px;
+float:left;
+display:inline-block;
+}
+.board .btn
+{
+min-width:124px;
+width:30%;
+height:30%;
+box-sizing: border-box;
+float:left;
+background-image: linear-gradient(rgb(255, 255, 255), rgb(230, 230, 230));
+background-repeat: repeat-x;
+border-bottom-color: rgb(179, 179, 179);
+border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-image-outset: 0px;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgba(0, 0, 0, 0.0980392);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgba(0, 0, 0, 0.0980392);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgba(0, 0, 0, 0.0980392);
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
+color: rgb(204, 204, 204);
+cursor: pointer;
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-size: 25px;
+margin-bottom: 20px;
+text-align:center;
+padding-top:93px;
+text-shadow: rgba(255, 255, 255, 0.74902) 0px 1px 1px;
+margin-left: 20px;
+vertical-align: middle;
+background-size: 100%;
+}
+.board
+{
+width:60%;
+float:left;
+overflow: hidden;
+min-width:700px;
+}
+.restart
+{
+padding-top:30px;
+width:95%;
+height:50px;
+-webkit-box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
+background-color: rgb(91, 183, 91);
+background-image: linear-gradient(rgb(98, 196, 98), rgb(81, 163, 81));
+background-repeat: repeat-x;
+border-bottom-color: rgba(0, 0, 0, 0.247059);
+border-bottom-left-radius: 4px;
+border-bottom-right-radius: 4px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-image-outset: 0px;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: rgba(0, 0, 0, 0.0980392);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgba(0, 0, 0, 0.0980392);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgba(0, 0, 0, 0.0980392);
+border-top-left-radius: 4px;
+border-top-right-radius: 4px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
+clear: both;
+color: rgb(255, 255, 255);
+cursor: pointer;
+float: left;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+text-align: center;
+text-shadow: rgba(0, 0, 0, 0.247059) 0px -1px 0px;
+text-transform: uppercase;
+line-height: 20px;
+margin-bottom: 0px;
+margin-left: 20px;
+}
+/*.disable o btn-primary
+{
+width:124px;
+height:124px;
+border-radius: 150px;
+-webkit-border-radius: 150px;
+-moz-border-radius: 150px; 
+background-size: 100%;
+}*/
+</style>
+<link rel="shortcut icon" href="x.png" type="image/x-icon">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+var x = "x"
+var o = "o"
+var count = 0;
+$('#game div').click(function(){
+
+if ($("#a").hasClass('o') && $("#b").hasClass('o') && $("#c").hasClass('o') ||
+	$("#d").hasClass('o') && $("#e").hasClass('o') && $("#f").hasClass('o') ||
+	$("#g").hasClass('o') && $("#h").hasClass('o') && $("#i").hasClass('o') ||
+	$("#a").hasClass('o') && $("#d").hasClass('o') && $("#g").hasClass('o') ||
+	$("#b").hasClass('o') && $("#e").hasClass('o') && $("#h").hasClass('o') ||
+	$("#a").hasClass('o') && $("#e").hasClass('o') && $("#i").hasClass('o') ||
+	$("#c").hasClass('o') && $("#e").hasClass('o') && $("#g").hasClass('o') ||	
+	$("#c").hasClass('o') && $("#f").hasClass('o') && $("#i").hasClass('o')) 
+	
+	{$("#titl").text("Tatan WIN !!!");	
+	$("#titl").animate({fontSize:'100px'});
+	
+	}
+	
+else if
+    ($("#a").hasClass('x') && $("#b").hasClass('x') && $("#c").hasClass('x') ||
+	$("#d").hasClass('x') && $("#e").hasClass('x') && $("#f").hasClass('x') ||
+	$("#g").hasClass('x') && $("#h").hasClass('x') && $("#i").hasClass('x') ||
+	$("#a").hasClass('x') && $("#d").hasClass('x') && $("#g").hasClass('x') ||
+	$("#b").hasClass('x') && $("#e").hasClass('x') && $("#h").hasClass('x') ||
+	$("#a").hasClass('x') && $("#e").hasClass('x') && $("#i").hasClass('x') ||
+	$("#c").hasClass('x') && $("#e").hasClass('x') && $("#g").hasClass('x') ||	
+	$("#c").hasClass('x') && $("#f").hasClass('x') && $("#i").hasClass('x'))
+	
+	{$("#titl").text("Didi WIN !!!");
+	$("#titl").animate({fontSize:'100px'});
+	}
+//call win function
+//call reset function*/
+else if ($(this).hasClass('disable'))
+  {
+    alert('Already selected')
+  }
+else if (count == 9)
+  {
+	$("#titl").text("Tie game finish !!!");	
+	//*call reset function*/
+  }
+else if (count%2 == 0)
+  {
+	  count++
+	  $(this).css("background-image", "url(o.png)");
+	  $(this).text('');
+      $(this).addClass('disable o btn-primary');
+	  
+	  
+	 xDone='N';
+	 
+	 if (xDone=='N' 
+	  && (($("#a").hasClass('x') && $("#b").hasClass('x') && !($("#c").hasClass('disable'))) ||
+	     ($("#f").hasClass('x') && $("#i").hasClass('x') && !($("#c").hasClass('disable'))) ||
+		 ($("#e").hasClass('x') && $("#g").hasClass('x') && !($("#c").hasClass('disable')))))
+		 {
+			$("#c").css("background-image", "url(x.png)");
+			$("#c").text(' ');
+			$("#c").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#c").hasClass('x') && $("#i").hasClass('x') && !($("#f").hasClass('disable'))) ||
+	     ($("#d").hasClass('x') && $("#e").hasClass('x') && !($("#f").hasClass('disable')))))
+		 {
+			$("#f").css("background-image", "url(x.png)");
+			$("#f").text(' ');
+			$("#f").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#c").hasClass('x') && $("#f").hasClass('x') && !($("#i").hasClass('disable'))) ||
+	     ($("#g").hasClass('x') && $("#h").hasClass('x') && !($("#i").hasClass('disable'))) ||
+		 ($("#a").hasClass('x') && $("#e").hasClass('x') && !($("#i").hasClass('disable')))))
+		 {
+			$("#i").css("background-image", "url(x.png)");
+			$("#i").text(' ');
+			$("#i").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#a").hasClass('x') && $("#c").hasClass('x') && !($("#b").hasClass('disable'))) ||
+	     ($("#e").hasClass('x') && $("#h").hasClass('x') && !($("#b").hasClass('disable')))))
+		 {
+			$("#b").css("background-image", "url(x.png)");
+			$("#b").text(' ');
+			$("#b").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#b").hasClass('x') && $("#h").hasClass('x') && !($("#e").hasClass('disable'))) ||
+	     ($("#d").hasClass('x') && $("#f").hasClass('x') && !($("#e").hasClass('disable'))) ||
+		 ($("#a").hasClass('x') && $("#i").hasClass('x') && !($("#e").hasClass('disable'))) ||
+		 ($("#c").hasClass('x') && $("#g").hasClass('x') && !($("#e").hasClass('disable')))))
+		 {
+			$("#e").css("background-image", "url(x.png)");
+			$("#e").text(' ');
+			$("#e").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#i").hasClass('x') && $("#g").hasClass('x') && !($("#h").hasClass('disable'))) ||
+	     ($("#b").hasClass('x') && $("#e").hasClass('x') && !($("#h").hasClass('disable')))))
+		 {
+			$("#h").css("background-image", "url(x.png)");
+			$("#h").text(' ');
+			$("#h").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#b").hasClass('x') && $("#c").hasClass('x') && !($("#a").hasClass('disable'))) ||
+	     ($("#e").hasClass('x') && $("#i").hasClass('x') && !($("#a").hasClass('disable'))) ||
+		 ($("#d").hasClass('x') && $("#g").hasClass('x') && !($("#a").hasClass('disable')))))
+		 {
+			$("#a").css("background-image", "url(x.png)");
+			$("#a").text(' ');
+			$("#a").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#e").hasClass('x') && $("#f").hasClass('x') && !($("#d").hasClass('disable'))) ||
+	     ($("#a").hasClass('x') && $("#g").hasClass('x') && !($("#d").hasClass('disable')))))
+		 {
+			$("#d").css("background-image", "url(x.png)");
+			$("#d").text(' ');
+			$("#d").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#h").hasClass('x') && $("#i").hasClass('x') && !($("#g").hasClass('disable'))) ||
+	     ($("#a").hasClass('x') && $("#d").hasClass('x') && !($("#g").hasClass('disable'))) ||
+		 ($("#c").hasClass('x') && $("#e").hasClass('x') && !($("#g").hasClass('disable')))))
+		 {
+			$("#g").css("background-image", "url(x.png)");
+			$("#g").text(' ');
+			$("#g").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+		 
+//check o
+
+	 if (xDone=='N' 
+	  && (($("#a").hasClass('o') && $("#b").hasClass('o') && !($("#c").hasClass('disable'))) ||
+	     ($("#f").hasClass('o') && $("#i").hasClass('o') && !($("#c").hasClass('disable'))) ||
+		 ($("#e").hasClass('o') && $("#g").hasClass('o') && !($("#c").hasClass('disable')))))
+		 {
+			$("#c").css("background-image", "url(x.png)");
+			$("#c").text(' ');
+			$("#c").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#c").hasClass('o') && $("#i").hasClass('o') && !($("#f").hasClass('disable'))) ||
+	     ($("#d").hasClass('o') && $("#e").hasClass('o') && !($("#f").hasClass('disable')))))
+		 {
+			$("#f").css("background-image", "url(x.png)");
+			$("#f").text(' ');
+			$("#f").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#c").hasClass('o') && $("#f").hasClass('o') && !($("#i").hasClass('disable'))) ||
+	     ($("#g").hasClass('o') && $("#h").hasClass('o') && !($("#i").hasClass('disable'))) ||
+		 ($("#a").hasClass('o') && $("#e").hasClass('o') && !($("#i").hasClass('disable')))))
+		 {
+			$("#i").css("background-image", "url(x.png)");
+			$("#i").text(' ');
+			$("#i").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#a").hasClass('o') && $("#c").hasClass('o') && !($("#b").hasClass('disable'))) ||
+	     ($("#e").hasClass('o') && $("#h").hasClass('o') && !($("#b").hasClass('disable')))))
+		 {
+			$("#b").css("background-image", "url(x.png)");
+			$("#b").text(' ');
+			$("#b").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#b").hasClass('o') && $("#h").hasClass('o') && !($("#e").hasClass('disable'))) ||
+	     ($("#d").hasClass('o') && $("#f").hasClass('o') && !($("#e").hasClass('disable'))) ||
+		 ($("#a").hasClass('o') && $("#i").hasClass('o') && !($("#e").hasClass('disable'))) ||
+		 ($("#c").hasClass('o') && $("#g").hasClass('o') && !($("#e").hasClass('disable')))))
+		 {
+			$("#e").css("background-image", "url(x.png)");
+			$("#e").text(' ');
+			$("#e").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#i").hasClass('o') && $("#g").hasClass('o') && !($("#h").hasClass('disable'))) ||
+	     ($("#b").hasClass('o') && $("#e").hasClass('o') && !($("#h").hasClass('disable')))))
+		 {
+			$("#h").css("background-image", "url(x.png)");
+			$("#h").text(' ');
+			$("#h").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#b").hasClass('o') && $("#c").hasClass('o') && !($("#a").hasClass('disable'))) ||
+	     ($("#e").hasClass('o') && $("#i").hasClass('o') && !($("#a").hasClass('disable'))) ||
+		 ($("#d").hasClass('o') && $("#g").hasClass('o') && !($("#a").hasClass('disable')))))
+		 {
+			$("#a").css("background-image", "url(x.png)");
+			$("#a").text(' ');
+			$("#a").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+	 if (xDone=='N' 
+	  && (($("#e").hasClass('o') && $("#f").hasClass('o') && !($("#d").hasClass('disable'))) ||
+	     ($("#a").hasClass('o') && $("#g").hasClass('o') && !($("#d").hasClass('disable')))))
+		 {
+			$("#d").css("background-image", "url(x.png)");
+			$("#d").text(' ');
+			$("#d").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }		 
+
+	 if (xDone=='N' 
+	  && (($("#h").hasClass('o') && $("#i").hasClass('o') && !($("#g").hasClass('disable'))) ||
+	     ($("#a").hasClass('o') && $("#d").hasClass('o') && !($("#g").hasClass('disable'))) ||
+		 ($("#c").hasClass('o') && $("#e").hasClass('o') && !($("#g").hasClass('disable')))))
+		 {
+			$("#g").css("background-image", "url(x.png)");
+			$("#g").text(' ');
+			$("#g").addClass('disable x btn-info');	  
+			count++;
+			xDone='Y';		 
+		 }
+
+
+		if ((!($("#a").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#a").css("background-image", "url(x.png)");
+				$("#a").text(' ');
+				$("#a").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+			
+		if ((!($("#c").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#c").css("background-image", "url(x.png)");
+				$("#c").text(' ');
+				$("#c").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}	  
+
+
+		if ((!($("#g").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#g").css("background-image", "url(x.png)");
+				$("#g").text(' ');
+				$("#g").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+
+		if ((!($("#i").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#i").css("background-image", "url(x.png)");
+				$("#i").text(' ');
+				$("#i").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+
+		if ((!($("#e").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#e").css("background-image", "url(x.png)");
+				$("#e").text(' ');
+				$("#e").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+
+		if ((!($("#b").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#b").css("background-image", "url(x.png)");
+				$("#b").text(' ');
+				$("#b").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+
+		if ((!($("#d").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#d").css("background-image", "url(x.png)");
+				$("#d").text(' ');
+				$("#d").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+
+		if ((!($("#f").hasClass('disable'))) && xDone=='N') 
+			{
+				$("#f").css("background-image", "url(x.png)");
+				$("#f").text(' ');
+				$("#f").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}
+		if ((!($("#h").hasClass('disable'))) && xDone=='N' )
+			{
+				$("#h").css("background-image", "url(x.png)");
+				$("#h").text(' ');
+				$("#h").addClass('disable x btn-info');	  
+				count++;
+				xDone='Y';			
+			}			
+	    if ($("#a").hasClass('o') && $("#b").hasClass('o') && $("#c").hasClass('o') ||
+			$("#d").hasClass('o') && $("#e").hasClass('o') && $("#f").hasClass('o') ||
+			$("#g").hasClass('o') && $("#h").hasClass('o') && $("#i").hasClass('o') ||
+			$("#a").hasClass('o') && $("#d").hasClass('o') && $("#g").hasClass('o') ||
+			$("#b").hasClass('o') && $("#e").hasClass('o') && $("#h").hasClass('o') ||
+			$("#a").hasClass('o') && $("#e").hasClass('o') && $("#i").hasClass('o') ||
+		    $("#c").hasClass('o') && $("#e").hasClass('o') && $("#g").hasClass('o') ||				
+			$("#c").hasClass('o') && $("#f").hasClass('o') && $("#i").hasClass('o'))    
+			
+			{
+			
+	   
+	   $("#titl").text("Tatan WIN !!!");
+	   $("#titl").animate({fontSize:'100px'});
+	//*call reset function*/
+        }
+		
+		else if ($("#a").hasClass('x') && $("#b").hasClass('x') && $("#c").hasClass('x') ||
+			$("#d").hasClass('x') && $("#e").hasClass('x') && $("#f").hasClass('x') ||
+			$("#g").hasClass('x') && $("#h").hasClass('x') && $("#i").hasClass('x') ||
+			$("#a").hasClass('x') && $("#d").hasClass('x') && $("#g").hasClass('x') ||
+			$("#b").hasClass('x') && $("#e").hasClass('x') && $("#h").hasClass('x') ||
+			$("#a").hasClass('x') && $("#e").hasClass('x') && $("#i").hasClass('x') ||
+			$("#c").hasClass('x') && $("#e").hasClass('x') && $("#g").hasClass('x') ||
+			$("#c").hasClass('x') && $("#f").hasClass('x') && $("#i").hasClass('x'))
+	{
+	 $("#titl").text("Didi WIN !!!");	
+	 $("#titl").animate({fontSize:'100px'});
+	 	//*call reset function*/
+    }
+		
+		
+  }
+/*   else  
+  {
+	  count++
+	$(this).css("background-image", "url(x.png)");
+	$(this).text('');	
+    $(this).addClass('disable x btn-info');
+	   if ($("#a").hasClass('x') && $("#b").hasClass('x') && $("#c").hasClass('x') ||
+			$("#d").hasClass('x') && $("#e").hasClass('x') && $("#f").hasClass('x') ||
+			$("#g").hasClass('x') && $("#h").hasClass('x') && $("#i").hasClass('x') ||
+			$("#a").hasClass('x') && $("#d").hasClass('x') && $("#g").hasClass('x') ||
+			$("#b").hasClass('x') && $("#e").hasClass('x') && $("#h").hasClass('x') ||
+			$("#a").hasClass('x') && $("#e").hasClass('x') && $("#i").hasClass('x') ||
+			$("#c").hasClass('x') && $("#e").hasClass('x') && $("#g").hasClass('x') ||
+			$("#c").hasClass('x') && $("#f").hasClass('x') && $("#i").hasClass('x'))
+	{
+	 $("#titl").text("Didi WIN !!!");	
+	 $("#titl").animate({fontSize:'100px'});
+	 	//*call reset function
+    }
+  }
+	*/
+
+   });
+    $("#reset").click(function () {
+    $("#titl").text("Ani Didi");
+	$("#titl").css("height","0px" );
+	$("#titl").css("fontSize","0px" );
+	$("#game div").css("background-image", "linear-gradient(rgb(255, 255, 255), rgb(230, 230, 230))");
+	$("#game div").text('Didi?Tatan');		
+	$("#game div").removeClass('disable');
+	$("#game div").removeClass('o');
+	$("#game div").removeClass('x');
+	$("#game div").removeClass('btn-primary');
+	$("#game div").removeClass('btn-info');
+	count = 0;
+});
+});
+</script>
+</head>
+<body>
+<h1 id="titl"><span id="win">Ani didi</span></h1>
+<div class="empnav"></div>
+<div class="board" id="game">
+<div id="a" class="btn" >Didi?Tatan?</div>
+<div id="b" class="btn" >Didi?Tatan?</div>
+<div id="c" class="btn" >Didi?Tatan?</div>
+<div id="d" class="btn" >Didi?Tatan?</div>
+<div id="e" class="btn" >Didi?Tatan?</div>
+<div id="f" class="btn" >Didi?Tatan?</div>
+<div id="g" class="btn" >Didi?Tatan?</div>
+<div id="h" class="btn" >Didi?Tatan?</div>
+<div id="i" class="btn" >Didi?Tatan?</div>
+<span id="reset" class="restart" >Restart</span>
+</div>
+<div class="empnav"></div>
+</body>
+</html>
